@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAT CLOCK</title>
+    <style>
+        body{
+            background-color: rgb(255, 255, 255);
+        }
+        *{
+            box-sizing: border-box;
+        }
+
+        .bigbox {
+            width: 40%;
+            margin: 50px auto;
+            box-shadow: 0px 0px 25px indigo;
+            padding: 25px;
+            /* color: indigo; */
+            font-weight: bolder;
+            font-size: 27px;
+            transition: all 1.2s;
+            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* background-color: rgb(34, 34, 34); */
+        }
+
+        .box {
+            text-align: center;
+            min-width: 60px;
+            padding: 5px;
+            max-width: 150px;
+            z-index: 9;
+            text-align: center;
+            margin: 10px 5px;
+            box-shadow: 0px 0px 6px grey;
+        }
+        
+        .mt {
+            z-index: 9;
+            display: inline-block;
+        }
+        
+        .month {
+            z-index: 9;
+            width: 100px;
+            box-shadow: 0px 0px 6px grey;
+            padding: 5px;
+            margin: 5px;
+            color: gold;
+            text-align: center;
+        }
+        .bb{
+            
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 28%;
+            z-index: -1;
+           
+            transition: all 3.2s;
+        }
+        .first{
+            width: 80px;
+            height: 80px;
+            background-color: yellow;
+        }
+        .second{
+            background-color: blue ;
+            width: 70px;
+            height: 70px;
+        }
+        .third{
+            background-color: rgb(0, 253, 169) ;
+            width: 50px;
+            height: 50px;
+        }
+        @media (max-width:800px) {
+            .bigbox{
+
+                width: 80%;
+                margin: 90px auto;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="bigbox" id="box00">
+        <div class="bb first" id="bx00"> </div>
+        <div class="bb second" id="bx01"> </div>
+        <div class="bb third" id="bx02"> </div>
+        <div class="box mt" id="box4"> </div>
+        <div class="box mt" id="box1"> </div>
+        <div class="box" id="box2"> </div>
+        <div class="box" id="box3"> </div>
+        <div class="box mt" id="box5"> </div>
+        <div class="month mt" id="mnth"> </div>
+        <div class="box" id="box6"> </div>
+        <div class="box" id="box7"> </div>
+    </div>
+
+</body>
+<script>
+
+    function showtime() {
+        let mnth = document.getElementById("mnth");
+        let hour = new Date().getHours();
+        let hr = hour % 12;
+
+        let minute = new Date().getMinutes();
+        let seconds = new Date().getSeconds();
+        let date = new Date().getDate();
+        let day = new Date().getDay();
+        let month = new Date().getMonth();
+        let monthdays = ['December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'];
+        let thismonth = monthdays[month];
+
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let today = days[day];
+        let ampm = hour >= 12 ? 'PM' : 'AM';
+        let hhr = hr < 10 ? hr = '0' + hr : hr ;
+        let min = minute < 10 ? minute = '0' + minute : minute ;
+        let sec = seconds < 10 ? seconds = `0${seconds}` : `${seconds}`;
+        box1.innerHTML = hhr + ` hr`;
+        box2.innerHTML = minute + ` m `;
+        box3.innerHTML = sec + ` s`;
+        box4.innerHTML = ampm;
+        box5.innerHTML = date;
+        box6.innerHTML = today;
+        mnth.innerHTML = thismonth;
+    }
+    setInterval(showtime, 1000);
+
+    function changecolor() {
+
+        let colors = ['blue', 'magenta', 'violet', 'purple', 'gold', 'green', 'red', 'crimson','darkgreen', 'deeppink', 'hotpink', 'skyblue', 'indianred', 'chocolate', 'orange', 'darkorange', 'darkblue'];
+        0+16
+        let rand = Math.random() * 16;
+        let roundoff = Math.round(rand);
+        box7.innerHTML = colors[roundoff];
+        box00.style.boxShadow = `0px 0px 35px ${colors[roundoff]}`;
+        box00.style.color = colors[roundoff];
+
+    }
+    setInterval(changecolor, 1500);
+
+    function moveball( ) {
+        let toprandom = Math.random()*550;
+        let topround = 10+Math.round(toprandom);
+        let top = `${topround}px`;
+        let leftrandom = Math.random()*40;
+        let leftround = 28+Math.round(leftrandom);
+        let left = `${leftround}%`;
+
+        bx00.style.top=`${topround}px`;
+        bx00.style.left=`${leftround}%`;
+
+
+        
+    }
+
+    setInterval(moveball, 3000);
+
+    function moveball001( ) {
+        let toprandom = Math.random()*550;
+        let topround = 10+Math.round(toprandom);
+        let top = `${topround}px`;
+        let leftrandom = Math.random()*40;
+        let leftround = 28+Math.round(leftrandom);
+        let left = `${leftround}%`;
+
+        bx01.style.top=`${topround}px`;
+        bx01.style.left=`${leftround}%`;
+
+
+        
+    }
+
+    setInterval(moveball001, 3000);
+
+    function moveball002( ) {
+        let toprandom = Math.random()*550;
+        let topround = 10+Math.round(toprandom);
+        let top = `${topround}px`;
+        let leftrandom = Math.random()*40;
+        let leftround = 28+Math.round(leftrandom);
+        let left = `${leftround}%`;
+
+        bx02.style.top=`${topround}px`;
+        bx02.style.left=`${leftround}%`;
+
+
+        
+    }
+
+    setInterval(moveball002, 3000);
+
+
+
+</script>
+
+</html>
