@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGITAT CLOCK</title>
     <style>
-        body{
+        body {
             background-color: rgb(255, 255, 255);
         }
-        *{
+
+        * {
             box-sizing: border-box;
+            /* border: 2px solid red; */
         }
 
         .bigbox {
@@ -18,99 +20,131 @@
             margin: 50px auto;
             box-shadow: 0px 0px 25px indigo;
             padding: 25px;
-            /* color: indigo; */
             font-weight: bolder;
             font-size: 27px;
             transition: all 1.2s;
             z-index: -1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            /* background-color: rgb(34, 34, 34); */
+
         }
 
         .box {
             text-align: center;
-            min-width: 60px;
-            padding: 5px;
+            padding: 7px;
             max-width: 150px;
             z-index: 9;
             text-align: center;
-            margin: 10px 5px;
+            margin: 10px;
             box-shadow: 0px 0px 6px grey;
         }
         
         .mt {
+            margin: 10px;
             z-index: 9;
             display: inline-block;
         }
-        
+
         .month {
-            z-index: 9;
-            width: 100px;
+            z-index: 9; 
+            max-width: 150px;
             box-shadow: 0px 0px 6px grey;
-            padding: 5px;
-            margin: 5px;
-            color: gold;
+            padding: 7px;
+            margin: 10px ;
+            color: fuchsia;
             text-align: center;
         }
-        .bb{
+        .inbox{
+            width: 40%;
+            text-align: center;
+            /* z-index: -1; */
+            margin: 5px auto;
+            border: 2px solid red;
             
+        }
+
+        .bb {
             border-radius: 50%;
             position: absolute;
             top: 10px;
             left: 28%;
             z-index: -1;
-           
             transition: all 3.2s;
         }
-        .first{
+
+        .first {
             width: 80px;
             height: 80px;
             background-color: yellow;
+            border-top: 25px solid red
+            /* box-shadow: 0px 0px 5px yellow; */
         }
-        .second{
-            background-color: blue ;
+        
+        .second {
+            background-color: rgb(33, 33, 255);
             width: 70px;
             height: 70px;
+            border-bottom: 20px solid hotpink ;
+            /* box-shadow: 0px 0px 5px blue; */
         }
-        .third{
-            background-color: rgb(0, 253, 169) ;
+        
+        .third {
+            background-color: rgb(0, 253, 169);
             width: 50px;
             height: 50px;
+            border-right: 15px solid purple ;
+            /* box-shadow: 0px 0px 5px rgb(0, 253, 169) ; */
         }
+
         @media (max-width:800px) {
-            .bigbox{
+            .bigbox {
 
                 width: 80%;
                 margin: 90px auto;
             }
+            .inbox{
+                width: 80%;
+            }
         }
-
     </style>
 </head>
 
 <body>
     <div class="bigbox" id="box00">
-        <div class="bb first" id="bx00"> </div>
-        <div class="bb second" id="bx01"> </div>
-        <div class="bb third" id="bx02"> </div>
-        <div class="box mt" id="box4"> </div>
-        <div class="box mt" id="box1"> </div>
-        <div class="box" id="box2"> </div>
-        <div class="box" id="box3"> </div>
-        <div class="box mt" id="box5"> </div>
-        <div class="month mt" id="mnth"> </div>
-        <div class="box" id="box6"> </div>
-        <div class="box" id="box7"> </div>
+        <div class="inbox" id="inb">
+
+            <div class="bb first" id="bx00"> </div>
+            <div class="bb second" id="bx01"> </div>
+            <div class="bb third" id="bx02"> </div>
+            <div class="box mt" id="box1"> </div>
+            <div class="box mt" id="box4"> </div>
+            <div class="box" id="box2"> </div>
+            <div class="box" id="box3"> </div>
+            <div class="box mt" id="box5">
+            </div>
+            <div class="month mt" id="mnth"> </div>
+            <div class="box" id="box6"> </div>
+            <div class="box" id="box7"> </div>
+        </div>
     </div>
 
 </body>
 <script>
 
+    let mnth = document.getElementById("mnth");
+    let box1 = document.getElementById("box1");
+    let box2 = document.getElementById("box2");
+    let box3 = document.getElementById("box3");
+    let box4 = document.getElementById("box4");
+    let box5 = document.getElementById("box5");
+    let box6 = document.getElementById("box6");
+    let box7 = document.getElementById("box7");
+    let box00 = document.getElementById("box00");
+    let bx01 = document.getElementById("bx01");
+    let bx02 = document.getElementById("bx02");
+    let bx00 = document.getElementById("bx00");
+    let inb = document.getElementById("inb");
+
     function showtime() {
-        let mnth = document.getElementById("mnth");
+
         let hour = new Date().getHours();
         let hr = hour % 12;
 
@@ -119,14 +153,14 @@
         let date = new Date().getDate();
         let day = new Date().getDay();
         let month = new Date().getMonth();
-        let monthdays = ['December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'];
+        let monthdays = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         let thismonth = monthdays[month];
 
         let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         let today = days[day];
         let ampm = hour >= 12 ? 'PM' : 'AM';
-        let hhr = hr < 10 ? hr = '0' + hr : hr ;
-        let min = minute < 10 ? minute = '0' + minute : minute ;
+        let hhr = hr < 10 ? hr = '0' + hr : hr;
+        let min = minute < 10 ? minute = '0' + minute : minute;
         let sec = seconds < 10 ? seconds = `0${seconds}` : `${seconds}`;
         box1.innerHTML = hhr + ` hr`;
         box2.innerHTML = minute + ` m `;
@@ -140,69 +174,66 @@
 
     function changecolor() {
 
-        let colors = ['blue', 'magenta', 'violet', 'purple', 'gold', 'green', 'red', 'crimson','darkgreen', 'deeppink', 'hotpink', 'skyblue', 'indianred', 'chocolate', 'orange', 'darkorange', 'darkblue'];
-        0+16
+        let colors = ['blue', 'magenta', 'violet', 'purple', 'gold', 'green', 'red', 'crimson', 'darkgreen', 'deeppink', 'hotpink', 'skyblue', 'indianred', 'chocolate', 'orange', 'darkorange', 'darkblue'];
+        0 + 16
         let rand = Math.random() * 16;
         let roundoff = Math.round(rand);
         box7.innerHTML = colors[roundoff];
         box00.style.boxShadow = `0px 0px 35px ${colors[roundoff]}`;
         box00.style.color = colors[roundoff];
+        inb.style.border=`2px solid ${colors[roundoff]}`
 
     }
     setInterval(changecolor, 1500);
 
-    function moveball( ) {
-        let toprandom = Math.random()*550;
-        let topround = 10+Math.round(toprandom);
-        let top = `${topround}px`;
-        let leftrandom = Math.random()*40;
-        let leftround = 28+Math.round(leftrandom);
-        let left = `${leftround}%`;
+    function moveball() {
+        let toprandom = Math.random() * 500;
+        let topround = 10 + Math.round(toprandom);
+        // let top = `${topround}px`;
+        let leftrandom = Math.random() * 42;
+        let leftround = 27 + Math.round(leftrandom);
+        // let left = `${leftround}%`;
 
-        bx00.style.top=`${topround}px`;
-        bx00.style.left=`${leftround}%`;
+        bx00.style.top = `${topround}px`;
+        bx00.style.left = `${leftround}%`;
 
-
-        
     }
 
     setInterval(moveball, 3000);
 
-    function moveball001( ) {
-        let toprandom = Math.random()*550;
-        let topround = 10+Math.round(toprandom);
+    function moveball001() {
+        let toprandom = Math.random() * 550;
+        let topround = 10 + Math.round(toprandom);
         let top = `${topround}px`;
-        let leftrandom = Math.random()*40;
-        let leftround = 28+Math.round(leftrandom);
+        let leftrandom = Math.random() * 40;
+        let leftround = 28 + Math.round(leftrandom);
         let left = `${leftround}%`;
 
-        bx01.style.top=`${topround}px`;
-        bx01.style.left=`${leftround}%`;
+        bx01.style.top = `${topround}px`;
+        bx01.style.left = `${leftround}%`;
 
 
-        
+
     }
 
     setInterval(moveball001, 3000);
 
-    function moveball002( ) {
-        let toprandom = Math.random()*550;
-        let topround = 10+Math.round(toprandom);
+    function moveball002() {
+        let toprandom = Math.random() * 550;
+        let topround = 10 + Math.round(toprandom);
         let top = `${topround}px`;
-        let leftrandom = Math.random()*40;
-        let leftround = 28+Math.round(leftrandom);
+        let leftrandom = Math.random() * 40;
+        let leftround = 28 + Math.round(leftrandom);
         let left = `${leftround}%`;
 
-        bx02.style.top=`${topround}px`;
-        bx02.style.left=`${leftround}%`;
+        bx02.style.top = `${topround}px`;
+        bx02.style.left = `${leftround}%`;
 
 
-        
+
     }
 
     setInterval(moveball002, 3000);
-
-
 
 </script>
 
