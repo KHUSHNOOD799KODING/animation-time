@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANIMATION CLOCK</title>
+    <title>DIGITAT CLOCK</title>
     <style>
         body {
             background-color: rgb(255, 255, 255);
@@ -22,8 +22,10 @@
             padding: 25px;
             font-weight: bolder;
             font-size: 27px;
-            transition: all 1.2s;
-            z-index: -1;
+            transition: all 2s;
+            z-index: -99;
+            /* background: linear-gradient(pink,violet,maroon,red); */
+            /* background-color: pink; */
 
         }
 
@@ -66,7 +68,7 @@
             position: absolute;
             top: 10px;
             left: 28%;
-            z-index: -1;
+            z-index: 10;
             transition: all 3.2s;
         }
 
@@ -102,6 +104,7 @@
             }
             .inbox{
                 width: 80%;
+                /* box-shadow:; */
             }
         }
     </style>
@@ -177,14 +180,23 @@
         let colors = ['blue', 'magenta', 'violet', 'purple', 'gold', 'green', 'red', 'crimson', 'darkgreen', 'deeppink', 'hotpink', 'skyblue', 'indianred', 'chocolate', 'orange', 'darkorange', 'darkblue'];
         0 + 16
         let rand = Math.random() * 16;
+        let rand1 = Math.random() * 16;
+        let rand2 = Math.random() * 16;
+        let rand3 = Math.random() * 16;
         let roundoff = Math.round(rand);
+        let roundoff1 = Math.round(rand1);
+        let roundoff2 = Math.round(rand2);
+        let roundoff3 = Math.round(rand3);
         box7.innerHTML = colors[roundoff];
         box00.style.boxShadow = `0px 0px 35px ${colors[roundoff]}`;
         box00.style.color = colors[roundoff];
         inb.style.border=`2px solid ${colors[roundoff]}`
+        // box00.style.border=`4px solid ${colors[roundoff]}`
+        box00.style.background=`linear-gradient(${colors[roundoff1]},${colors[roundoff2]},${colors[roundoff3]})`;
+
 
     }
-    setInterval(changecolor, 1500);
+    setInterval(changecolor, 2500);
 
     function moveball() {
         let toprandom = Math.random() * 500;
